@@ -18,7 +18,6 @@ use speculoos::{assert_that, result::ResultAssertions, string::StrAssertions};
 
 use crate::common::mock_modules::{BootMockAdapter1V1, BootMockAdapter1V2, V1, V2};
 
-
 #[test]
 fn installing_one_adapter_should_succeed() -> AResult {
     let sender = Addr::unchecked(common::OWNER);
