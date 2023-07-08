@@ -25,9 +25,9 @@ use semver::Version;
 
 pub(crate) type AResult = anyhow::Result<()>; // alias for Result<(), anyhow::Error>
 
-pub(crate) fn create_default_account(
-    factory: &AccountFactory<Mock>,
-) -> anyhow::Result<AbstractAccount<Mock>> {
+pub(crate) fn create_default_account<Chain: CwEnv>(
+    factory: &AccountFactory<Chain>,
+) -> anyhow::Result<AbstractAccount<Chain>> {
     let account = factory.create_default_account(GovernanceDetails::Monarchy {
         monarch: Addr::unchecked(OWNER).to_string(),
     })?;
@@ -36,11 +36,11 @@ pub(crate) fn create_default_account(
 
 use abstract_testing::addresses::{TEST_ACCOUNT_ID, TEST_MODULE_ID};
 
-pub(crate) fn init_mock_adapter(
-    chain: Mock,
-    deployment: &Abstract<Mock>,
+pub(crate) fn init_mock_adapter<Chain: CwEnv>(
+    chain: Chain,
+    deployment: &Abstract<Chain>,
     version: Option<String>,
-) -> anyhow::Result<BootMockAdapter<Mock>> {
+) -> anyhow::Result<BootMockAdapter<Chain>> {
     deployment
         .version_control
         .claim_namespace(TEST_ACCOUNT_ID, "tester".to_string());
@@ -69,7 +69,7 @@ pub(crate) fn add_mock_adapter_install_fee(
     Ok(())
 }
 
-pub fn install_adapter(manager: &Manager<Mock>, adapter_id: &str) -> AResult {
+pub fn install_adapter<Chain: CwEnv>(manager: &Manager<Chain>, adapter_id: &str) -> AResult {
     manager.install_module(adapter_id, &Empty {}, None)?;
     Ok(())
 }
