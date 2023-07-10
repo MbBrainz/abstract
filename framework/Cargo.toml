@@ -73,9 +73,9 @@ abstract-core = { version = "0.17.0", path = "packages/abstract-core" }
 abstract-macros = { version = "0.17.0", path = "packages/abstract-macros" }
 abstract-ica = { version = "0.17.0", path = "packages/abstract-ica" }
 
-abstract-adapter-utils = { version = "0.17.0", path = "packages/utils" }
-abstract-dex-adapter-traits = { path = "packages/dex" }
-abstract-staking-adapter-traits = { path = "packages/staking" }
+abstract-adapter-utils = { version = "0.17.1", path = "packages/utils" }
+abstract-dex-adapter-traits = { version = "0.17.1", path = "packages/dex" }
+abstract-staking-adapter-traits = { version = "0.17.1", path = "packages/staking" }
 
 ## Testing
 cw-multi-test = { version = "0.16.2" }
