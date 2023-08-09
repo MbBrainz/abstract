@@ -20,6 +20,11 @@ impl UsageFee {
         let fee = Fee::new(share)?;
         Ok(UsageFee { fee, recipient })
     }
+    
+    pub fn msg(&self, asset: Asset) -> AbstractResult<CosmosMsg> {
+        asset.transfer_msg(self.recipient).map_err(Into::into)
+    }
+    
     pub fn set_share(&mut self, share: Decimal) -> AbstractResult<()> {
         self.fee = Fee::new(share)?;
         Ok(())
